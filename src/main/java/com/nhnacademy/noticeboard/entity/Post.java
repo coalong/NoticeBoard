@@ -15,6 +15,7 @@ import java.util.Date;
 public class Post {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_no")
     private long postId;
 
@@ -31,7 +32,7 @@ public class Post {
 
     private String content;
 
-    @Column(name = "is_inactive")
+    @Column(name = "is_inactive", columnDefinition = "default 0")
     private boolean isInactive;
 
 }

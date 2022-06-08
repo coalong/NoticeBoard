@@ -7,38 +7,33 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Objects;
+import javax.validation.Valid;
 
 @Controller
-@RequestMapping
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
     @GetMapping("/login")
-    public String login(HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
-        if (Objects.isNull(session) || Objects.isNull(session.getAttribute("id"))) {
-            return "loginForm";
-        } else {
-            return "noticeBoard";
-        }
+    public String login() {
+        return "loginForm";
     }
 
     @PostMapping("/login")
-    public String doLogin(@ModelAttribute UserDto user,
+    public String doLogin(@Valid @ModelAttribute UserDto user,
+                          @RequestParam(defaultValue = "/") String redirectURL,
                           HttpServletRequest request) {
         if (userService.matchs(user)) {
             HttpSession session = request.getSession(true);
             session.setAttribute("userId", user.getId());
-            return "noticeBoard";
+            return "redirect:" + redirectURL;
         } else {
-            return "redirect:/login";
+            return "loginForm";
         }
     }
 
