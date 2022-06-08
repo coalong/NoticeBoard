@@ -12,6 +12,7 @@ import java.util.Date;
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Post {
 
     @Id
