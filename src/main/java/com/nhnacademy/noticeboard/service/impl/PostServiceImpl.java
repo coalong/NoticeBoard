@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +27,10 @@ public class PostServiceImpl implements PostService {
                          .createDate(new Date())
                          .build();
         postRepository.save(post);
+    }
+
+    @Override
+    public List<Post> viewAllPosts() {
+        return postRepository.findAll();
     }
 }

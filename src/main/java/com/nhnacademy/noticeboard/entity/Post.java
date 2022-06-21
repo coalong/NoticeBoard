@@ -29,8 +29,6 @@ public class Post {
     @Column(name = "create_date")
     private Date createDate;
 
-    private long hits;
-
     private String content;
 
     @Column(name = "is_inactive", columnDefinition = "default 0")

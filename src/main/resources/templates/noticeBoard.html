@@ -5,8 +5,27 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="/login"> 로그인 하기 </a><br>
-    <a href="/insertPost"> 게시물 입력 </a>
+    <h2>게시판</h2>
+    <a href="/login"> 로그인 </a><br>
+    <a href="/insertPost"> 게시물 등록</a>
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="notice : ${noticeBoard}">
+            <td th:text = "${notice.id}"></td>
+            <td th:text = "${notice.title}"></td>
+            <td th:text = "${notice.writer}"></td>
+            <td th:text = "${notice.createDate}"></td>
+        </tr>
+        </tbody>
+    </table>
 
 
 

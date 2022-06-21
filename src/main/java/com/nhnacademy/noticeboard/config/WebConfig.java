@@ -12,7 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("noticeBoard");
+        registry.addViewController("/").setViewName("index");
     }
 
     @Override
@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginCheckInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/login", "/");
+                .excludePathPatterns("/login", "/", "/viewNoticeBoard");
     }
 }
 
